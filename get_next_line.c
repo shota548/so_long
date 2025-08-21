@@ -6,11 +6,11 @@
 /*   By: showatan <showatan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:20:11 by showatan          #+#    #+#             */
-/*   Updated: 2025/08/02 15:21:24 by showatan         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:43:04 by showatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 static int	handle_error_and_cleanup(char **s1, char **s2)
 {

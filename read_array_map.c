@@ -6,13 +6,13 @@
 /*   By: showatan <showatan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:23:23 by showatan          #+#    #+#             */
-/*   Updated: 2025/08/20 19:48:28 by showatan         ###   ########.fr       */
+/*   Updated: 2025/08/21 19:12:19 by showatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	count_lines(char *file_path)
+int	count_lines(char *file_path)
 {
 	int		fd;
 	char	*line;
@@ -28,22 +28,19 @@ static int	count_lines(char *file_path)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		line = get_next_line(fd);
 		count++;
 		free(line);
+		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 	return (count);
 }
 
 t_map	*count_line_with_malloc(char *file_path)
 {
-	int		fd;
-	int		idx;
-	char	line;
 	t_map	*map;
 
-	fd = open(file_path, O_RDONLY);
 	map = (t_map *)malloc(sizeof(t_map));
 	if (map == NULL)
 	{
@@ -62,10 +59,13 @@ t_map	*count_line_with_malloc(char *file_path)
 t_map	*read_map_with_malloc(char *file_path)
 {
 	int		fd;
-	char	line;
+	char	*line;
 	t_map	*map;
 	int		idx;
 
+	map = count_line_with_malloc(file_path);
+	if (map == NULL)
+		return (NULL);
 	map->grid = (char **)malloc(sizeof(char *) * map ->height);
 	if (!map->grid)
 	{
@@ -85,12 +85,12 @@ t_map	*read_map_with_malloc(char *file_path)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		line = get_next_line(fd);
 		map->grid[idx] = line;
 		idx++;
+		line = get_next_line(fd);
 	}
 	close(fd);
 	if (map->height > 0)
-		map->width = strlen(map->grid[0]);
+		map->width = ft_strlen(map->grid[0]) - 1;
 	return (map);
 }

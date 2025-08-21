@@ -6,24 +6,11 @@
 /*   By: showatan <showatan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 19:18:55 by showatan          #+#    #+#             */
-/*   Updated: 2025/07/29 18:42:20 by showatan         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:13:53 by showatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int	count;
-
-	count = 0;
-	while (*s != '\0')
-	{
-		count++;
-		s++;
-	}
-	return (count);
-}
+#include "so_long.h"
 
 int	ft_strchr_len(const char *s, int search_c )
 {
