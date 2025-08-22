@@ -6,7 +6,7 @@
 /*   By: showatan <showatan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 16:40:42 by showatan          #+#    #+#             */
-/*   Updated: 2025/08/21 20:18:37 by showatan         ###   ########.fr       */
+/*   Updated: 2025/08/22 16:52:22 by showatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ int	load_sprites(t_game *game)
 	return (1);
 }
 
+void	*check_grid(char grid, t_game *game)
+{
+	if (grid == '1')
+		return (game->img->wall);
+	else if (grid == '0')
+		return (game->img->empty);
+	else if (grid == 'P')
+		return (game->img->player);
+	else if (grid == 'C')
+		return (game->img->collectible);
+	else if (grid == 'E')
+		return (game->img->exit);
+	else
+		return (NULL);
+}
+
 int	render_map(t_game *game)
 {
 	int		i;
@@ -43,24 +59,13 @@ int	render_map(t_game *game)
 		j = 0;
 		while (j < game->map->width)
 		{
-			sprite = NULL;
-			if (game->map->grid[i][j] == '1')
-				sprite = game->img->wall;
-			else if (game->map->grid[i][j] == '0')
-				sprite = game->img->empty;
-			else if (game->map->grid[i][j] == 'P')
-				sprite = game->img->player;
-			else if (game->map->grid[i][j] == 'C')
-				sprite = game->img->collectible;
-			else if (game->map->grid[i][j] == 'E')
-				sprite = game->img->exit;
+			sprite = check_grid(game->map->grid[i][j], game);
 			if (sprite)
 				mlx_put_image_to_window(game->mlx, game->win, sprite,
 					j * 64, i * 64);
 			j++;
 		}
 		i++;
-		//printf("%d\n", i);
 	}
 	return (0);
 }

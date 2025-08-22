@@ -6,7 +6,7 @@
 /*   By: showatan <showatan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 17:23:23 by showatan          #+#    #+#             */
-/*   Updated: 2025/08/21 19:12:19 by showatan         ###   ########.fr       */
+/*   Updated: 2025/08/22 19:57:31 by showatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	count_lines(char *file_path)
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 	close(fd);
 	return (count);
 }
@@ -87,8 +86,12 @@ t_map	*read_map_with_malloc(char *file_path)
 	{
 		map->grid[idx] = line;
 		idx++;
+		free(line);
+		line = NULL;
 		line = get_next_line(fd);
 	}
+	free(line);
+	line = NULL;
 	close(fd);
 	if (map->height > 0)
 		map->width = ft_strlen(map->grid[0]) - 1;

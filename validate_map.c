@@ -6,7 +6,7 @@
 /*   By: showatan <showatan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 16:04:34 by showatan          #+#    #+#             */
-/*   Updated: 2025/08/21 16:34:48 by showatan         ###   ########.fr       */
+/*   Updated: 2025/08/22 15:27:50 by showatan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,17 @@ int	validate_map(t_map *map)
 {
 	if (is_rectangular(map) == 0)
 	{
-		write(1, "Error\nMap is not rectangular.\n", 31);
+		printf("Error\nMap is not rectangular.");
 		return (0);
 	}
 	if (is_surrounded_by_walls(map) == 0)
 	{
-		write(1, "Error\nMap is not surrounded by walls.\n", 38);
+		printf("Error\nMap is not surrounded by walls.");
 		return (0);
 	}
 	if (has_required_elements(map) == 0)
 	{
-		write(1, "Error\nMap does not have required elements.\n", 44);
+		printf("Error\nMap does not have required elements.\n");
 		return (0);
 	}
 	return (1);
